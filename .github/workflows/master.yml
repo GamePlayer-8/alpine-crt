@@ -9,7 +9,9 @@ jobs:
   Musl-Build:
     runs-on: ubuntu-latest
 
-    container: alpine
+    container:
+        image: alpine
+        options: --privileged
 
     steps:
         - name: ^ Checkout

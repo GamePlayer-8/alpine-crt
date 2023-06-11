@@ -15,7 +15,7 @@ echo '</html>' >> index.html
 
 BACK_PATH=$(pwd)
 
-mkdir -v /runner/page/
+mkdir -p /runner/page/
 cp -rv /source/* /runner/page/
 cd /runner/page
 tar -czvf pack.tar.gz *
