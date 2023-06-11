@@ -2,9 +2,9 @@ FROM alpine
 
 USER root
 
-COPY ./certs /
+COPY ./certs/* ./certs/
 
-RUN cat /certs/* >> /etc/ssl/certs/ca-certificates.crt && \
+RUN cat ./certs/* >> /etc/ssl/certs/ca-certificates.crt && \
 	cp /etc/ssl/certs/ca-certificates.crt / && \
 	mkdir /etc/ssl1.1 2>/dev/null && \
 	rm -f /etc/ssl/cert.pem && \
