@@ -22,7 +22,7 @@ tar -czvf pack.tar.gz *
 
 cd $BACK_PATH
 
-apk add --no-cache podman fuse-overlayfs
+apk add --no-cache podman fuse-overlayfs gawk
 
 cp pipeline/containers.conf /etc/containers/containers.conf
 chmod 644 /etc/containers/containers.conf && \
@@ -46,6 +46,9 @@ podman system migrate
 podman pull alpine
 
 podman build -t chimmie/alpine-crt .
+
+export REGISTRY_DOMAIN=$(echo "$REGISTRY_DOMAIN" | awk '{print tolower($0)}')
+export REGISTRY_USER=$(echo "$REGISTRY_USER" | awk '{print tolower($0)}')
 
 echo "$REGISTRY_TOKEN" | podman login "$REGISTRY_DOMAIN" -u "$REGISTRY_USER" --password-stdin
 
