@@ -27,7 +27,7 @@ jobs:
           run: |
             echo "REGISTRY_USER=${{ github.repository_owner }}" >> $GITHUB_ENV
             echo "REGISTRY_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
-            echo 'REGISTRY_DOMAIN="ghcr.io"' >> $GITHUB_ENV
+            echo "REGISTRY_DOMAIN=ghcr.io" >> $GITHUB_ENV
 
         - name: Run Init.
           run: cd /source && sh init.sh
