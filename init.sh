@@ -22,7 +22,7 @@ tar -czvf pack.tar.gz *
 
 cd $BACK_PATH
 
-apk add --no-cache podman
+apk add --no-cache podman fuse-overlayfs
 
 cp pipeline/containers.conf /etc/containers/containers.conf
 chmod 644 /etc/containers/containers.conf && \
