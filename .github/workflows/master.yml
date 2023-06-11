@@ -1,0 +1,31 @@
+name: Build & Push Image.
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  Musl-Build:
+    runs-on: ubuntu-latest
+
+    container: alpine
+
+    steps:
+        - name: ^ Checkout
+          uses: actions/checkout@v3
+
+        - name: Create build dir.
+          run: mkdir /source
+
+        - name: Copy data.
+          run: cp -r * /source/
+
+        - name: Set environment variables
+          run: |
+            echo "REGISTRY_USER=${{ github.repository_owner }}" >> $GITHUB_ENV
+            echo "REGISTRY_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+            echo 'REGISTRY_DOMAIN="ghcr.io"' >> $GITHUB_ENV
+
+        - name: Run Init.
+          run: cd /source && sh init.sh
